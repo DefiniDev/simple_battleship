@@ -3,7 +3,9 @@ var location1 = randomLoc;
 var location2 = location1 + 1;
 var location3 = location2 + 1;
 var guess;
-var hits = 0;
+var hit1 = false;
+var hit2 = false;
+var hit3 = false;
 var guesses = 0;
 var isSunk = false;
 while (isSunk == false) {
@@ -12,15 +14,27 @@ while (isSunk == false) {
     alert("Please enter a valid cell number!");
   } else {
     guesses = guesses + 1;
-    if (guess == location1 || guess == location2 || guess == location3) {
-      alert("HIT!");
-      hits = hits + 1;
-      if (hits == 3) {
-        isSunk = true;
-        alert("You sank my battleship!");
-      }
+    if (guess == location1 && hit1 == false) {
+      alert("Hit forward!");
+      hit1 = true;
+    } else if (guess == location1 && hit1 == true) {
+      alert("Already hit!");
+    } else if (guess == location2 && hit2 == false) {
+      alert("Hit mid!");
+      hit2 = true;
+    } else if (guess == location2 && hit2 == true) {
+      alert("Already hit!");
+    } else if (guess == location3 && hit3 == false) {
+      alert("Hit aft!");
+      hit3 = true;
+    } else if (guess == location3 && hit3 == true) {
+      alert("Already hit!");
     } else {
-      alert("MISS");
+      alert("MISS!");
+    }
+    if (hit1 && hit2 && hit3 == true) {
+      isSunk = true;
+      alert("You sank my battleship!");
     }
   }
 }
